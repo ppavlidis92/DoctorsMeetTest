@@ -1,0 +1,122 @@
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="card mb-4">
+                    <div class="card-header"><strong>Εγγραφή Νέου Ασθενή </strong></div>
+                        
+                        <div class="card-body">
+
+                          <p class="text-medium-emphasis small">Ενδεχομένος οδηγίες προς τον χρήστη που συμπληρώνει την φόρμα.</p>
+                         
+                          <div class="example">
+                            <ul class="nav nav-tabs" role="tablist">
+                                  <li class="nav-item">
+                                    <a class="nav-link active" data-coreui-toggle="tab" href="#preview-789" role="tab" id="UserForm">
+                                      Φόρμα Εγγραφής</a>
+                                  </li> 
+
+
+                                  <li class="nav-item">
+                                    <a class="nav-link " data-coreui-toggle="tab" href="#preview-790" role="tab">
+                                      Φόρμα Εγγραφής με email</a>
+                                  </li> 
+                            </ul>
+                     <!-- Form -->
+                            <div class="tab-content rounded-bottom">
+                              <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-789" id="UserFormEmail">
+                                <form class="row g-3">
+                                  <div class="col-md-4">
+                                    <label class="form-label" for="validationDefault01">Όνομα</label>
+                                    <input class="form-control" id="validationDefault01" type="text" placeholder="Μάριος" required="">
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label class="form-label" for="validationDefault02">Επίθετο</label>
+                                    <input class="form-control" id="validationDefault02" type="text" placeholder="Παππάς" required="">
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label class="form-label" for="validationAge">Ηλικία</label>
+                                    <input class="form-control" id="validationAge" type="text"  required="" placeholder="29">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label class="form-label" for="validationDefaultEmail">Email</label>
+                                    <div class="input-group"><span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                      <input class="form-control" id="validationDefaultEmail" type="email" placeholder="email@email.gr" required="">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <label class="form-label" for="validationMobile">Κινητό</label>
+                                    <input class="form-control" id="validationMobile" type="text"  placeholder="6972364565" required="">
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label class="form-label" for="validationTown">Πόλη</label>
+                                    <input class="form-control" id="validationTown" type="text" required="" placeholder="Ραφήνα">
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label class="form-label" for="validationAddress">Διέυθηνση</label>
+                                    <input class="form-control" id="validationAddress" type="text" required="" placeholder="Σαρανταπόρου 23">
+                                  </div>
+
+                                 
+                                  <!-- SELECT BUTTON -->
+                                  <!-- <div class="col-md-3">
+                                    <label class="form-label" for="validationDefault04">State</label>
+                                    <select class="form-select" id="validationDefault04" required="">
+                                      <option selected="" disabled="" value="">Choose...</option>
+                                      <option>...</option>
+                                    </select>
+                                  </div> -->
+                                  <div class="col-md-3">
+                                    <label class="form-label" for="validationZip">T.K</label>
+                                    <input class="form-control" id="validationZip" type="text" required="" placeholder="19999">
+                                  </div>
+
+
+                                  <div class="col-md-9">
+                                    <label class="form-label" for="validationAllergies">Αλλεργίες</label>
+                                    <input class="form-control" id="validationAllergies" type="text" required="" placeholder="Προκαθορισμένων για να επιλέγει ο ασθενής ?">
+                                  </div>
+
+
+                                  <!-- <div class="col-12">
+                                    <div class="form-check">
+                                      <input class="form-check-input" id="invalidCheck2" type="checkbox" required="">
+                                      <label class="form-check-label" for="invalidCheck2">Agree to terms and conditions</label>
+                                    </div>
+                                  </div> -->
+                                  <div class="col-12">
+                                    <button class="btn btn-primary" type="submit">Υποβολή Φόρμας</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                       <!-- Form -->
+
+
+                        <!-- Email -->
+                              <div class="tab-content rounded-bottom">
+                                <div class="tab-pane p-3  preview" role="tabpanel" id="preview-790">
+                                  <form class="row g-3">
+
+                                    
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="validationDefaultEmail">Email Αποστολέα</label>
+                                      <div class="input-group"><span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                        <input class="form-control" id="validationDefaultEmail" type="email" placeholder="email@email.gr" required="">
+                                      </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                      <button class="btn btn-primary" type="submit">Αποστολή</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                        <!-- Email -->
+
+
+                          </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
