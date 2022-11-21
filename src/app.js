@@ -14,10 +14,13 @@
 
 
 //DB connect
-		const mongoURI = process.env.MONGODB_URI;
-		mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-			console.log('Connected to Database');
-		});
+		const mongoURI = process.env.mongoURI;
+
+		mongoose.connect(mongoURI).then(
+		() => { console.log('Connected to Database') },
+		err => { console.log('Error')}
+		);
+
 
 
 

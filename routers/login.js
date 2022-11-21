@@ -42,7 +42,8 @@ router.post('/', (req, res) => {
 				res.render('login', {
 					title: ' Log in',
 					message: 'Mail not  found, users does not exist',
-					status: 'alert alert-danger'
+					status: 'alert alert-danger',
+					login:true
 				});
 			}
 			bcrypt.compare(password, user.password, (err, result) => {
