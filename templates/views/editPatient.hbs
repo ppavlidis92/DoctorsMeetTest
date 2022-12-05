@@ -1,54 +1,367 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  $(document).ready(function () {
+    var a = window.location.href
+    var id = a.substring(a.lastIndexOf('/') + 1);
+
+
+
+
+
+    // $('#historyCheckd')
+
+    axios({
+      method: 'post',
+      url: window.location.origin + '/edit/getPatient/' + id,
+      //params: {
+      //     :id
+      // }
+    }).then((response) => {
+
+      if (response) {
+
+        let data = response.data[0]
+
+        $('#fatherAge').val(data.familyTable[0].member_age)
+        $('#fatherHealth').val(data.familyTable[0].health_state)
+        $('#fatherAgeDeath').val(data.familyTable[0].member_age_death)
+        $('#fatherReasonDeath').val(data.familyTable[0].member_death_reason)
+
+        $('#motherAge').val(data.familyTable[1].member_age)
+        $('#motherHealth').val(data.familyTable[1].health_state)
+        $('#motherAgeDeath').val(data.familyTable[1].member_age_death)
+        $('#motherReasonDeath').val(data.familyTable[1].member_death_reason)
+
+        $('#brotherAge').val(data.familyTable[2].member_age)
+        $('#brotherHealth').val(data.familyTable[2].health_state)
+        $('#brotherAgeDeath').val(data.familyTable[2].member_age_death)
+        $('#brotherReasonDeath').val(data.familyTable[2].member_death_reason)
+
+        $('#sisterAge').val(data.familyTable[3].member_age)
+        $('#sisterHealth').val(data.familyTable[3].health_state)
+        $('#sisterAgeDeath').val(data.familyTable[3].member_age_death)
+        $('#sisterReasonDeath').val(data.familyTable[3].member_death_reason)
+
+        $('#wifeAge').val(data.familyTable[4].member_age)
+        $('#wifeHealth').val(data.familyTable[4].health_state)
+        $('#wifeAgeDeath').val(data.familyTable[4].member_age_death)
+        $('#wifeReasonDeath').val(data.familyTable[4].member_death_reason)
+        console.log(data)
+
+        if (data.history.boolean) {
+          $('#historyCheckdTrue').attr('checked', 'checked')
+          $('#historyText').show()
+          $('#historyTextInput').val(data.history.text)
+        } else if (data.history.boolean == false) {
+          $('#historyCheckdFalse').attr('checked', 'checked')
+        }
+
+        if (data.smoker) {
+          $('#smokerTrue').attr('checked', 'checked')
+        } else if (data.smoker == false) {
+          $('#smokerFalse').attr('checked', 'checked')
+        }
+
+        if (data.alcohol) {
+          $('#alcoholTrue').attr('checked', 'checked')
+        } else if (data.alcohol == false) {
+          $('#alcoholFalse').attr('checked', 'checked')
+        }
+
+        if (data.army.boolean) {
+          $('#armyCheckdTrue').attr('checked', 'checked')
+        } else if (data.army.boolean == false) {
+          $('#armyCheckdFalse').attr('checked', 'checked')
+          $('#armyText').show()
+          $('#armyTextInput').val(data.army.text)
+        }
+
+        if (data.annarotiki.boolean) {
+          $('#annarotikiCheckdTrue').attr('checked', 'checked')
+          $('#annarotikiText').show()
+          $('#annarotikiTextInput').val(data.annarotiki.text)
+        } else if (data.annarotiki.boolean == false) {
+          $('#annarotikiCheckdFalse').attr('checked', 'checked')
+        }
+
+        if (data.therapia.boolean) {
+          $('#therapiaCheckdTrue').attr('checked', 'checked')
+          $('#therapiaText').show()
+          $('#therapiaTextInput').val(data.therapia.text)
+        } else if (data.therapia.boolean == false) {
+          $('#therapiaCheckdFalse').attr('checked', 'checked')
+        }
+
+        if (data.eyesEarsDiscomfort) {
+          $('#eyesEarsDiscomfortTrue').attr('checked', 'checked')
+        } else if (data.eyesEarsDiscomfort == false) {
+          $('#eyesEarsDiscomfortFalse').attr('checked', 'checked')
+        }
+
+        if (data.illggous) {
+          $('#illggousTrue').attr('checked', 'checked')
+        } else if (data.illggous == false) {
+          $('#illggousFalse').attr('checked', 'checked')
+        }
+
+        if (data.gastrenteriko) {
+          $('#gastrenterikoTrue').attr('checked', 'checked')
+        } else if (data.gastrenteriko == false) {
+          $('#gastrenterikoFalse').attr('checked', 'checked')
+        }
+
+        if (data.kukloforiako) {
+          $('#kukloforiakoTrue').attr('checked', 'checked')
+        } else if (data.kukloforiako == false) {
+          $('#kukloforiakoFalse').attr('checked', 'checked')
+        }
+
+
+        if (data.anapnefstiko) {
+          $('#anapnefstikoTrue').attr('checked', 'checked')
+        } else if (data.anapnefstiko == false) {
+          $('#anapnefstikoFalse').attr('checked', 'checked')
+        }
+
+        if (data.ouropoihtiko) {
+          $('#ouropoihtikoTrue').attr('checked', 'checked')
+        } else if (data.ouropoihtiko == false) {
+          $('#ouropoihtikoFalse').attr('checked', 'checked')
+        }
+
+        if (data.muoskeletiko) {
+          $('#muoskeletikoTrue').attr('checked', 'checked')
+        } else if (data.muoskeletiko == false) {
+          $('#muoskeletikoFalse').attr('checked', 'checked')
+        }
+
+        if (data.anaimia.boolean) {
+          $('#anaimiaCheckdTrue').attr('checked', 'checked')
+          $('#anaimiaText').show()
+          $('#anaimiaTextInput').val(data.anaimia.text)
+        } else if (data.anaimia.boolean == false) {
+          $('#anaimiaCheckdFalse').attr('checked', 'checked')
+        }
+
+
+
+        if (data.alergia.boolean) {
+          $('#alergiaCheckdTrue').attr('checked', 'checked')
+          $('#alergiaText').show()
+          $('#alergiaTextInput').val(data.alergia.text)
+        } else if (data.anaimia.boolean == false) {
+          $('#alergiaCheckdFalse').attr('checked', 'checked')
+        }
+
+
+        if (data.egxeirish.boolean) {
+          $('#egxeirishCheckdTrue').attr('checked', 'checked')
+          $('#egxeirishText').show()
+
+
+          $("#egxeirishTextWHO_1").val(data.egxeirish.text[0].Who)
+          $("#egxeirishTextWHERE_1").val(data.egxeirish.text[0].Where)
+          $("#egxeirishTextWHEN_1").val(data.egxeirish.text[0].When)
+
+          $("#egxeirishTextWHO_2").val(data.egxeirish.text[1].Who)
+          $("#egxeirishTextWHERE_2").val(data.egxeirish.text[1].Where)
+          $("#egxeirishTextWHEN_2").val(data.egxeirish.text[1].When)
+
+          $("#egxeirishTextWHO_3").val(data.egxeirish.text[2].Who)
+          $("#egxeirishTextWHERE_3").val(data.egxeirish.text[2].Where)
+          $("#egxeirishTextWHEN_3").val(data.egxeirish.text[2].When)
+
+
+        } else if (data.egxeirish.boolean == false) {
+          $('#egxeirishCheckdFalse').attr('checked', 'checked')
+        }
+
+
+        $('#traumatismoi').val(data.traumatismoi)
+        $('#allesNosilies_1').val(data.allesNosilies[0])
+        $('#allesNosilies_2').val(data.allesNosilies[1])
+
+
+
+        if (data.osteosinthesi) {
+          $('#osteosinthesiTrue').attr('checked', 'checked')
+        } else if (data.osteosinthesi == false) {
+          $('#osteosinthesiFalse').attr('checked', 'checked')
+        }
+
+
+
+
+
+
+        if (data.SakxarodiDiabiti.boolean) {
+          $('#SakxarodiDiabitiCheckdTrue').attr('checked', 'checked')
+          $('#SakxarodiDiabitiText').show()
+
+
+          $("#SakxarodiDiabitiWHO_1").val(data.SakxarodiDiabiti.text[0].Who)
+          $("#SakxarodiDiabitiWHEN_1").val(data.SakxarodiDiabiti.text[0].When)
+          $("#SakxarodiDiabitiRESULT_1").val(data.SakxarodiDiabiti.text[0].Result)
+
+          $("#SakxarodiDiabitiWHO_2").val(data.SakxarodiDiabiti.text[1].Who)
+          $("#SakxarodiDiabitiWHEN_2").val(data.SakxarodiDiabiti.text[1].When)
+          $("#SakxarodiDiabitiRESULT_2").val(data.SakxarodiDiabiti.text[1].Result)
+
+          $("#SakxarodiDiabitiWHO_3").val(data.SakxarodiDiabiti.text[2].Who)
+          $("#SakxarodiDiabitiWHEN_3").val(data.SakxarodiDiabiti.text[2].When)
+          $("#SakxarodiDiabitiRESULT_3").val(data.SakxarodiDiabiti.text[2].Result)
+
+
+        } else if (data.SakxarodiDiabiti.boolean == false) {
+          $('#SakxarodiDiabitiCheckdFalse').attr('checked', 'checked')
+        }
+
+
+
+
+        if (data.gunaikologikaProblimata.boolean) {
+          $('#gunaikologikaProblimataTrue').attr('checked', 'checked')
+          $('#gunaikologikaProblimataText').show()
+          $('#gunaikologikaProblimataInput').val(data.gunaikologikaProblimata.text)
+        } else if (data.gunaikologikaProblimata.boolean == false) {
+          $('#gunaikologikaProblimataFalse').attr('checked', 'checked')
+        }
+
+
+
+
+        if (data.egkuos.boolean) {
+          $('#egkuosTrue').attr('checked', 'checked')
+          $('#egkuosText').show()
+          $('#egkuosInput').val(data.egkuos.text)
+        } else if (data.egkuos.boolean == false) {
+          $('#egkuosFalse').attr('checked', 'checked')
+        }
+
+
+
+
+        $('#sullipseis').val(data.sullipseis)
+
+        $('#apovoles').val(data.apovoles)
+
+
+        if (data.checkup.boolean) {
+          $('#checkupTrue').attr('checked', 'checked')
+          $('#checkupText').show()
+
+
+          $("#checkupTextWHO_1").val(data.checkup.Status[0].Who)
+          $("#checkupTextWHEN_1").val(data.checkup.Status[0].When)
+          $("#checkupTextWHERE_1").val(data.checkup.Status[0].Where)
+
+          $("#checkupTextWHO_2").val(data.checkup.Status[1].Who)
+          $("#checkupTextWHEN_2").val(data.checkup.Status[1].When)
+          $("#checkupTextWHERE_2").val(data.checkup.Status[1].Where)
+
+          $("#checkupTextWHO_3").val(data.checkup.Status[2].Who)
+          $("#checkupTextWHEN_3").val(data.checkup.Status[2].When)
+          $("#checkupTextWHERE_3").val(data.checkup.Status[2].Where)
+
+
+        } else if (data.checkup.boolean == false) {
+          $('#checkupFalse').attr('checked', 'checked')
+        }
+
+
+
+        if (data.metavoliVarous) {
+          $('#metavoliVarousTrue').attr('checked', 'checked')
+        } else if (data.metavoliVarous == false) {
+          $('#metavoliVarousFalse').attr('checked', 'checked')
+        }
+
+
+
+        if (data.farmaka.boolean) {
+          $('#farmakaTrue').attr('checked', 'checked')
+          $('#farmakaText').show()
+          $("#farmakaAitia").val(data.farmaka.Aitia)
+          $("#farmakaEidos").val(data.farmaka.Eidos)
+
+        } else if (data.farmaka.boolean == false) {
+          $('#farmakaFalse').attr('checked', 'checked')
+        }
+
+
+
+
+        if (data.allo.boolean) {
+          $('#alloTrue').attr('checked', 'checked')
+          $('#alloText').show()
+          $("#alloInput").val(data.allo.text)
+
+
+        } else if (data.allo.boolean == false) {
+          $('#alloFalse').attr('checked', 'checked')
+        }
+
+
+
+
+
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+
+
+  });
+</script>
+
+
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <div class="card-header"><strong>Εγγραφή Νέου Ασθενή </strong></div>
+      <div class="card-header"><strong>Επεξεργασία Ασθενή </strong></div>
 
       <div class="card-body">
 
+        {{!-- <p class="text-medium-emphasis small">Ενδεχομένος οδηγίες προς τον χρήστη που συμπληρώνει την φόρμα.</p>
+        --}}
+
+
+
+        </script>
+
 
         <div class="example">
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-coreui-toggle="tab" href="#preview-789" onclick="return false" role="tab"
-                id="UserForm">
-                Φόρμα Εγγραφής</a>
-            </li>
 
-
-            <li class="nav-item">
-              <a class="nav-link " data-coreui-toggle="tab" href="#preview-790" onclick="return false" role="tab"
-                id="UserEmailForm">
-                Φόρμα Εγγραφής με email</a>
-            </li>
-          </ul>
-
-
-
-
-
-          <!-- ============================================================ Form===================================================== -->
-
+          <!-- Form -->
           <div class="tab-content rounded-bottom">
-            <div class="tab-pane p-3 active preview" role="tabpanel" id="UserFormDiv">
-              <form action="/patient/AddPatient" method="POST">
-                {{!-- -------------------------------- --}}
+            <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-789" id="UserFormEmail">
+
+
+              <form class="row g-3" action="/edit/editPatient/{{id}}" method="POST" name="myForm">
+
 
 
                 <div class="row g-3">
 
                   <div class="col-md-4">
                     <label class="form-label" for="validationDefault01">Όνομα</label>
-                    <input class="form-control" name="fname" type="text" placeholder="Μάριος" required="">
+                    <input class="form-control" name="fname" type="text" placeholder="Μάριος" required=""
+                      value="{{user.fname}}">
                   </div>
 
                   <div class="col-md-4">
                     <label class="form-label" for="validationDefault02">Επίθετο</label>
-                    <input class="form-control" name="lname" type="text" placeholder="Παππάς" required="">
+                    <input class="form-control" name="lname" type="text" placeholder="Παππάς" required=""
+                      value="{{user.lname}}">
                   </div>
+
+
+
 
                   <div class="col-md-4">
                     <label class="form-label" for="DateOfBirth">Ημερομηνία Γέννησεως</label>
-                    <input class="form-control" name="DateOfBirth" type="date" required="">
+                    <input class="form-control" name="DateOfBirth" type="date" required=""
+                      value="{{formatTime user.DateOfBirth  'YYYY-MM-DD'}}">
                   </div>
 
 
@@ -57,36 +370,42 @@
 
                   <div class="col-md-4">
                     <label class="form-label" for="streetName">Διεύθηνση</label>
-                    <input class="form-control" id="streetName" name="streetName" type="text" required="">
+                    <input class="form-control" id="streetName" name="streetName" type="text" required=""
+                      value="{{user.Address.streetName}}">
                   </div>
 
                   <div class="col-md-3">
                     <label class="form-label" for="streetNumber">Αριθμός</label>
-                    <input class="form-control" id="streetNumber" name="streetNumber" type="number" required="">
+                    <input class="form-control" id="streetNumber" name="streetNumber" type="number" required=""
+                      value="{{user.Address.streetNumber}}">
                   </div>
 
                   <div class="col-md-3">
                     <label class="form-label" for="streetZip">Τ.Κ.</label>
-                    <input class="form-control" id="streetZip" name="streetZip" type="number" required="">
+                    <input class="form-control" id="streetZip" name="streetZip" type="number" required=""
+                      value="{{user.Address.streetZip}}">
                   </div>
 
 
                   <div class="col-md-4">
                     <label class="form-label" for="identification">Στοιχεία Αστυνομικής Ταυτότητας</label>
-                    <input class="form-control" id="identification" name="identification" type="text" required="">
+                    <input class="form-control" id="identification" name="identification" type="text" required=""
+                      value="{{user.identification}}">
                   </div>
 
 
 
                   <div class="col-md-4">
                     <label class="form-label" for="AsfalistikoTameio">Ασφαλιστικό Ταμείο</label>
-                    <input class="form-control" id="AsfalistikoTameio" name="AsfalistikoTameio" type="text" required="">
+                    <input class="form-control" id="AsfalistikoTameio" name="AsfalistikoTameio" type="text" required=""
+                      value="{{user.AsfalistikoTameio}}">
                   </div>
 
 
                   <div class="col-md-4">
                     <label class="form-label" for="UserAmka">AMKA</label>
-                    <input class="form-control" id="UserAmka" name="UserAmka" type="number" required="">
+                    <input class="form-control" id="UserAmka" name="UserAmka" type="number" required=""
+                      value="{{user.UserAmka}}">
                   </div>
 
 
@@ -94,17 +413,19 @@
                   <div class="col-md-4">
                     <label class="form-label" for="validationDefaultEmail">Email</label>
                     <div class="input-group"><span class="input-group-text" id="inputGroupPrepend2">@</span>
-                      <input class="form-control" name="email" type="email" placeholder="email@email.gr">
+                      <input class="form-control" name="email" type="email" value="{{user.email}}">
                     </div>
                   </div>
 
                   <div class="col-md-4">
                     <label class="form-label" for="validationMobile">Κινητό</label>
-                    <input class="form-control" name="mobile_number" type="number" placeholder="6972364565" required="">
+                    <input class="form-control" name="mobile_number" type="number" value="{{user.mobile_number}}"
+                      required="">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label" for="validationMobile">Σταθερό</label>
-                    <input class="form-control" name="home_number" type="number" placeholder="2294022222" required="">
+                    <input class="form-control" name="home_number" type="number" value="{{user.home_number}}"
+                      required="">
                   </div>
 
 
@@ -133,9 +454,10 @@
                     <tbody>
                       <tr class="align-middle">
 
+                        {{!-- {{user.familyTable[0].member_age}} --}}
                         <th scope="row">Πατέρας</th>
                         <td class="text-center"><input class="form-control" type="number" id="fatherAge"
-                            name="fatherAge"></td>
+                            name="fatherAge" value=""></td>
                         <td class="text-center"><input class="form-control" type="text" id="fatherHealth"
                             name="fatherHealth"></td>
                         <td class="text-center"><input class="form-control" type="number" id="fatherAgeDeath"
@@ -226,14 +548,14 @@
 
                               <label>
                                 <input type="checkbox" class="radio historyCheckd" value="true" name="history"
-                                  id="historyCheckd" />Ναι</label>
+                                  id="historyCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio historyCheckd" value="false" name="history"
-                                  id="historyCheckd" value="false" />Οχι</label>
+                                  id="historyCheckdFalse" value="false" />Οχι</label>
                               <div id="historyText" style="display:none;">
                                 <hr>
                                 <p>Περιγράψτε</p>
-                                <input class="form-control" type="text" name="historyText">
+                                <input class="form-control" type="text" name="historyText" id="historyTextInput">
                               </div>
 
 
@@ -258,10 +580,10 @@
                             <div>
 
                               <label>
-                                <input type="checkbox" class="radio" value="true" name="smoker"
+                                <input type="checkbox" class="radio" value="true" name="smoker" id="smokerTrue"
                                   value="true" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="smoker"
+                                <input type="checkbox" class="radio" value="false" name="smoker" id="smokerFalse"
                                   value="false" />Οχι</label>
 
                             </div>
@@ -283,10 +605,10 @@
                             <div>
 
                               <label>
-                                <input type="checkbox" class="radio" value="true" name="alcohol"
+                                <input type="checkbox" class="radio" value="true" name="alcohol" id="alcoholTrue"
                                   value="true" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="alcohol"
+                                <input type="checkbox" class="radio" value="false" name="alcohol" id="alcoholFalse"
                                   value="false" />Οχι</label>
 
                             </div>
@@ -311,14 +633,14 @@
 
                               <label>
                                 <input type="checkbox" class="radio armyCheckd" value="true" name="army"
-                                  id="armyCheckd" />Ναι</label>
+                                  id="armyCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio armyCheckd" value="false" name="army"
-                                  id="armyCheckd" value="false" />Οχι</label>
+                                  id="armyCheckdFalse" value="false" />Οχι</label>
                               <div id="armyText" style="display:none;">
                                 <hr>
                                 <p>Περιγράψτε</p>
-                                <input class="form-control" type="text" name="armyText">
+                                <input class="form-control" type="text" name="armyText" id="armyTextInput">
                               </div>
 
 
@@ -344,16 +666,17 @@
 
                               <label>
                                 <input type="checkbox" class="radio annarotikiCheckd" value="true" name="annarotiki"
-                                  id="annarotikiCheckd" />Ναι</label>
+                                  id="annarotikiCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio annarotikiCheckd" value="false" name="annarotiki"
-                                  id="annarotikiCheckd" value="false" />Οχι</label>
+                                  id="annarotikiCheckdFalse" value="false" />Οχι</label>
 
                               <div id="annarotikiText" style="display:none;">
                                 <hr>
                                 <p>Λόγος;</p>
 
-                                <textarea class="form-control" name="annarotikiText" rows="4" cols="50">
+                                <textarea class="form-control" name="annarotikiTextInput" id="annarotikiTextInput"
+                                  rows="4" cols="50">
 </textarea>
                               </div>
 
@@ -381,16 +704,17 @@
 
                               <label>
                                 <input type="checkbox" class="radio therapiaCheckd" value="true" name="therapia"
-                                  id="therapiaCheckd" />Ναι</label>
+                                  id="therapiaCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio therapiaCheckd" value="false" name="therapia"
-                                  id="therapiaCheckd" value="false" />Οχι</label>
+                                  id="therapiaCheckdFalse" value="false" />Οχι</label>
                               <div id="therapiaText" style="display:none;">
                                 <hr>
                                 <p>Λόγος</p>
 
 
-                                <textarea class="form-control" name="therapiaText" rows="4" cols="50">
+                                <textarea class="form-control" name="therapiaText" id="therapiaTextInput" rows="4"
+                                  cols="50">
 </textarea>
                               </div>
 
@@ -416,10 +740,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="eyesEarsDiscomfort"
-                                  id="eyesEarsDiscomfort" />Ναι</label>
+                                  id="eyesEarsDiscomfortTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio" value="false" name="eyesEarsDiscomfort"
-                                  id="eyesEarsDiscomfort" value="false" />Οχι</label>
+                                  id="eyesEarsDiscomfortFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -441,9 +765,9 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="illggous"
-                                  id="illggous" />Ναι</label>
+                                  id="illggousTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="illggous" id="illggous"
+                                <input type="checkbox" class="radio" value="false" name="illggous" id="illggousFalse"
                                   value="false" />Οχι</label>
 
                             </div>
@@ -467,10 +791,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="gastrenteriko"
-                                  id="gastrenteriko" />Ναι</label>
+                                  id="gastrenterikoTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio" value="false" name="gastrenteriko"
-                                  id="gastrenteriko" value="false" />Οχι</label>
+                                  id="gastrenterikoFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -495,10 +819,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="anapnefstiko"
-                                  id="anapnefstiko" />Ναι</label>
+                                  id="anapnefstikoTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="anapnefstiko" id="anapnefstiko"
-                                  value="false" />Οχι</label>
+                                <input type="checkbox" class="radio" value="false" name="anapnefstiko"
+                                  id="anapnefstikoFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -521,10 +845,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="kukloforiako"
-                                  id="kukloforiako" />Ναι</label>
+                                  id="kukloforiakoTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="kukloforiako" id="kukloforiako"
-                                  value="false" />Οχι</label>
+                                <input type="checkbox" class="radio" value="false" name="kukloforiako"
+                                  id="kukloforiakoFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -549,10 +873,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="ouropoihtiko"
-                                  id="ouropoihtiko" />Ναι</label>
+                                  id="ouropoihtikoTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="ouropoihtiko" id="ouropoihtiko"
-                                  value="false" />Οχι</label>
+                                <input type="checkbox" class="radio" value="false" name="ouropoihtiko"
+                                  id="ouropoihtikoFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -578,10 +902,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="muoskeletiko"
-                                  id="muoskeletiko" />Ναι</label>
+                                  id="muoskeletikoTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio" value="false" name="muoskeletiko" id="muoskeletiko"
-                                  value="false" />Οχι</label>
+                                <input type="checkbox" class="radio" value="false" name="muoskeletiko"
+                                  id="muoskeletikoFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -603,17 +927,18 @@
 
                               <label>
                                 <input type="checkbox" class="radio anaimiaCheckd" value="true" name="anaimia"
-                                  id="anaimiaCheckd" />Ναι</label>
+                                  id="anaimiaCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio anaimiaCheckd" value="false" name="anaimia"
-                                  id="anaimiaCheckd" value="false" />Οχι</label>
+                                  id="anaimiaCheckdFalse" value="false" />Οχι</label>
 
                               <div id="anaimiaText" style="display:none;">
                                 <hr>
                                 <p>Διευκρινίστε λεπτομερώς.</p>
 
 
-                                <textarea class="form-control" name="anaimiaText" rows="4" cols="50">
+                                <textarea class="form-control" name="anaimiaText" id="anaimiaTextInput" rows="4"
+                                  cols="50">
 </textarea>
                               </div>
 
@@ -638,15 +963,16 @@
 
                               <label>
                                 <input type="checkbox" class="radio alergiaCheckd" value="true" name="alergia"
-                                  id="alergiaCheckd" />Ναι</label>
+                                  id="alergiaCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio alergiaCheckd" value="false" name="alergia"
-                                  id="alergiaCheckd" value="false" />Οχι</label>
+                                  id="alergiaCheckdFalse" value="false" />Οχι</label>
 
                               <div id="alergiaText" style="display:none;">
                                 <hr>
                                 <p>Διευκρινίστε λεπτομερώς.</p>
-                                <textarea class="form-control" name="alergiaText" rows="4" cols="50">
+                                <textarea class="form-control" name="alergiaText" id="alergiaTextInput" rows="4"
+                                  cols="50">
 </textarea>
 
 
@@ -673,10 +999,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio egxeirishCheckd" value="true" name="egxeirish"
-                                  id="egxeirishCheckd" />Ναι</label>
+                                  id="egxeirishCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio egxeirishCheckd" value="false" name="egxeirish"
-                                  id="egxeirishCheckd" value="false" />Οχι</label>
+                                  id="egxeirishCheckdFalse" value="false" />Οχι</label>
 
                               <div id="egxeirishText" style="display:none;">
                                 <hr>
@@ -694,21 +1020,30 @@
                                     <tbody id="egxeiriseisTableBody">
 
                                       <tr id="1">
-                                        <td> <input class="form-control" type="text" name="egxeirishTextWHO_1"></td>
-                                        <td> <input class="form-control" type="text" name="egxeirishTextWHERE_1"></td>
-                                        <td> <input class="form-control" type="number" name="egxeirishTextWHEN_1"></td>
+                                        <td> <input class="form-control" type="text" name="egxeirishTextWHO_1"
+                                            id="egxeirishTextWHO_1"></td>
+                                        <td> <input class="form-control" type="text" name="egxeirishTextWHERE_1"
+                                            id="egxeirishTextWHERE_1"></td>
+                                        <td> <input class="form-control" type="number" name="egxeirishTextWHEN_1"
+                                            id="egxeirishTextWHEN_1"></td>
                                       </tr>
 
                                       <tr id="2">
-                                        <td> <input class="form-control" type="text" name="egxeirishTextWHO_2"></td>
-                                        <td> <input class="form-control" type="text" name="egxeirishTextWHERE_2"></td>
-                                        <td> <input class="form-control" type="number" name="egxeirishTextWHEN_2"></td>
+                                        <td> <input class="form-control" type="text" name="egxeirishTextWHO_2"
+                                            id="egxeirishTextWHO_2"></td>
+                                        <td> <input class="form-control" type="text" name="egxeirishTextWHERE_2"
+                                            id="egxeirishTextWHERE_2"></td>
+                                        <td> <input class="form-control" type="number" name="egxeirishTextWHEN_2"
+                                            id="egxeirishTextWHEN_2"></td>
                                       </tr>
 
                                       <tr id="3">
-                                        <td> <input class="form-control" type="text" name="egxeirishTextWHO_3"></td>
-                                        <td> <input class="form-control" type="text" name="egxeirishTextWHERE_3"></td>
-                                        <td> <input class="form-control" type="number" name="egxeirishTextWHEN_3"></td>
+                                        <td> <input class="form-control" type="text" name="egxeirishTextWHO_3"
+                                            id="egxeirishTextWHO_3"> </td>
+                                        <td> <input class="form-control" type="text" name="egxeirishTextWHERE_3"
+                                            id="egxeirishTextWHERE_3"></td>
+                                        <td> <input class="form-control" type="number" name="egxeirishTextWHEN_3"
+                                            id="egxeirishTextWHEN_3"></td>
                                       </tr>
                                     </tbody>
 
@@ -744,7 +1079,7 @@
 
                               <label> Τραυματισμοί</label>
                               <hr>
-                              <textarea class="form-control" name="traumatismoi" rows="4" cols="50">
+                              <textarea class="form-control" name="traumatismoi" id="traumatismoi" rows="4" cols="50">
 </textarea>
 
 
@@ -773,10 +1108,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="osteosinthesi"
-                                  id="osteosinthesi" />Ναι</label>
+                                  id="osteosinthesiTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio" value="false" name="osteosinthesi"
-                                  id="osteosinthesi" value="false" />Οχι</label>
+                                  id="osteosinthesiFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -802,11 +1137,13 @@
                                 <tbody id="nosiliesTableBody">
 
                                   <tr id="1">
-                                    <td> <input class="form-control" type="text" name="allesNosilies_1"></td>
+                                    <td> <input class="form-control" type="text" name="allesNosilies_1"
+                                        id="allesNosilies_1"></td>
                                   </tr>
 
                                   <tr id="2">
-                                    <td> <input class="form-control" type="text" name="allesNosilies_2"></td>
+                                    <td> <input class="form-control" type="text" name="allesNosilies_2"
+                                        id="allesNosilies_2"></td>
                                   </tr>
 
 
@@ -839,10 +1176,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio SakxarodiDiabitiCheckd" value="true"
-                                  name="SakxarodiDiabiti" id="SakxarodiDiabitiCheckd" />Ναι</label>
+                                  name="SakxarodiDiabiti" id="SakxarodiDiabitiCheckdTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio SakxarodiDiabitiCheckd" value="false"
-                                  name="SakxarodiDiabiti" id="SakxarodiDiabitiCheckd" value="false" />Οχι</label>
+                                  name="SakxarodiDiabiti" id="SakxarodiDiabitiCheckdFalse" value="false" />Οχι</label>
 
                               <div id="SakxarodiDiabitiText" style="display:none;">
                                 <div class="table-responsive">
@@ -855,23 +1192,32 @@
 
                                     <tbody id="SakxarodiDiabitisTableBody">
                                       <tr id="1">
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHO_1"></td>
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHEN_1"></td>
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiRESULT_1">
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHO_1"
+                                            id="SakxarodiDiabitiWHO_1"></td>
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHEN_1"
+                                            id="SakxarodiDiabitiWHEN_1"></td>
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiRESULT_1"
+                                            id="SakxarodiDiabitiRESULT_1">
                                         </td>
                                       </tr>
 
                                       <tr id="2">
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHO_2"></td>
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHEN_2"></td>
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiRESULT_2">
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHO_2"
+                                            id="SakxarodiDiabitiWHO_2"></td>
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHEN_2"
+                                            id="SakxarodiDiabitiWHEN_2"></td>
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiRESULT_2"
+                                            id="SakxarodiDiabitiRESULT_2">
                                         </td>
                                       </tr>
 
                                       <tr id="3">
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHO_3"></td>
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHEN_3"></td>
-                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiRESULT_3">
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHO_3"
+                                            id="SakxarodiDiabitiWHO_3"></td>
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiWHEN_3"
+                                            id="SakxarodiDiabitiWHEN_3"></td>
+                                        <td> <input class="form-control" type="text" name="SakxarodiDiabitiRESULT_3"
+                                            id="SakxarodiDiabitiRESULT_3">
                                         </td>
                                       </tr>
                                     </tbody>
@@ -908,17 +1254,18 @@
 
                               <label>
                                 <input type="checkbox" class="radio gunaikologikaProblimata" value="true"
-                                  name="gunaikologikaProblimata" id="gunaikologikaProblimata" />Ναι</label>
+                                  name="gunaikologikaProblimata" id="gunaikologikaProblimataTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio gunaikologikaProblimata" value="false"
-                                  name="gunaikologikaProblimata" id="gunaikologikaProblimata"
+                                  name="gunaikologikaProblimata" id="gunaikologikaProblimataFalse"
                                   value="false" />Οχι</label>
 
                             </div>
                             <div id="gunaikologikaProblimataText" style="display:none;">
                               <hr>
                               <p>Διευκρινίστε λεπτομερώς.</p>
-                              <textarea class="form-control" name="gunaikologikaProblimataText" rows="4" cols="50">
+                              <textarea class="form-control" name="gunaikologikaProblimataText"
+                                id="gunaikologikaProblimataInput" rows="4" cols="50">
 </textarea>
 
 
@@ -944,9 +1291,9 @@
 
                               <label>
                                 <input type="checkbox" class="radio egkuos" value="true" name="egkuos"
-                                  id="egkuos" />Ναι</label>
+                                  id="egkuosTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio egkuos" value="false" name="egkuos" id="egkuos"
+                                <input type="checkbox" class="radio egkuos" value="false" name="egkuos" id="egkuosFalse"
                                   value="false" />Οχι</label>
 
                             </div>
@@ -954,7 +1301,8 @@
                               <hr>
                               <p>Αναφέρατε μήνα.</p>
 
-                              <input class="form-control" name="egkuosText" type="text">
+                              <input class="form-control" name="egkuosText" name="egkuosInput" id="egkuosInput"
+                                type="text">
 
 
                             </div>
@@ -979,7 +1327,7 @@
                             <div>
 
 
-                              <textarea class="form-control" name="sullipseis" rows="4" cols="50">
+                              <textarea class="form-control" name="sullipseis" id="sullipseis" rows="4" cols="50">
 </textarea>
 
                             </div>
@@ -1002,7 +1350,7 @@
                           <div class="form-check">
                             <div>
 
-                              <input class="form-control" type="text" name="apovoles">
+                              <input class="form-control" type="text" name="apovoles" id="apovoles">
 
 
                             </div>
@@ -1027,9 +1375,9 @@
 
                                 <label>
                                   <input type="checkbox" class="radio" value="true" name="checkup"
-                                    id="checkup" />Ναι</label>
+                                    id="checkupTrue" />Ναι</label>
                                 <label>
-                                  <input type="checkbox" class="radio" value="false" name="checkup" id="checkup"
+                                  <input type="checkbox" class="radio" value="false" name="checkup" id="checkupFalse"
                                     value="false" />Οχι</label>
 
                               </div>
@@ -1044,21 +1392,30 @@
                                   <tbody id="checkupTableBody">
 
                                     <tr id="1">
-                                      <td> <input class="form-control" type="text" name="checkupTextWHO_1"></td>
-                                      <td> <input class="form-control" type="text" name="checkupTextWHERE_1"></td>
-                                      <td> <input class="form-control" type="text" name="checkupTextWHEN_1"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHO_1"
+                                          id="checkupTextWHO_1"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHERE_1"
+                                          id="checkupTextWHERE_1"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHEN_1"
+                                          id="checkupTextWHEN_1"></td>
                                     </tr>
 
                                     <tr id="2">
-                                      <td> <input class="form-control" type="text" name="checkupTextWHO_2"></td>
-                                      <td> <input class="form-control" type="text" name="checkupTextWHERE_2"></td>
-                                      <td> <input class="form-control" type="text" name="checkupTextWHEN_2"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHO_2"
+                                          id="checkupTextWHO_2"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHERE_2"
+                                          id="checkupTextWHERE_2"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHEN_2"
+                                          id="checkupTextWHEN_2"></td>
                                     </tr>
 
                                     <tr id="3">
-                                      <td> <input class="form-control" type="text" name="checkupTextWHO_3"></td>
-                                      <td> <input class="form-control" type="text" name="checkupTextWHERE_3"></td>
-                                      <td> <input class="form-control" type="text" name="checkupTextWHEN_3"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHO_3"
+                                          id="checkupTextWHO_3"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHERE_3"
+                                          id="checkupTextWHERE_3"></td>
+                                      <td> <input class="form-control" type="text" name="checkupTextWHEN_3"
+                                          id="checkupTextWHEN_3" id></td>
                                     </tr>
                                   </tbody>
 
@@ -1088,10 +1445,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio" value="true" name="metavoliVarous"
-                                  id="metavoliVarous" />Ναι</label>
+                                  id="metavoliVarousTrue" />Ναι</label>
                               <label>
                                 <input type="checkbox" class="radio" value="false" name="metavoliVarous"
-                                  id="metavoliVarous" value="false" />Οχι</label>
+                                  id="metavoliVarousFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -1114,10 +1471,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio farmaka" value="true" name="farmaka"
-                                  id="farmaka" />Ναι</label>
+                                  id="farmakaTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio farmaka" value="false" name="farmaka" id="farmaka"
-                                  value="false" />Οχι</label>
+                                <input type="checkbox" class="radio farmaka" value="false" name="farmaka"
+                                  id="farmakaFalse" value="false" />Οχι</label>
 
                             </div>
 
@@ -1128,11 +1485,13 @@
                               <table class="table border mb-0">
                                 <tr>
                                   <td>Αιτία </td>
-                                  <td><input class="form-control" name="farmakaAitia" type="text"></td>
+                                  <td><input class="form-control" name="farmakaAitia" id="farmakaAitia" type="text">
+                                  </td>
                                 </tr>
                                 <tr>
                                   <td>Είδος</td>
-                                  <td> <input class="form-control" name="farmakaEidos" type="text"></td>
+                                  <td> <input class="form-control" name="farmakaEidos" id="farmakaEidos" type=" text">
+                                  </td>
                                 </tr>
                               </table>
 
@@ -1161,10 +1520,10 @@
 
                               <label>
                                 <input type="checkbox" class="radio allo" value="true" name="allo"
-                                  id="allo" />Ναι</label>
+                                  id="alloTrue" />Ναι</label>
                               <label>
-                                <input type="checkbox" class="radio allo" value="false" name="allo" id="allo"
-                                  value="false" />Οχι</label>
+                                <input type="checkbox" class="radio allo" value="false" name="allo" id="alloFalse"
+                                  value="false" />False</label>
 
                             </div>
 
@@ -1172,7 +1531,8 @@
                               <hr>
                               <p>Αναφέρατε.</p>
 
-                              <textarea class="form-control" name="alloText" cols="30" rows="10"></textarea>
+                              <textarea class="form-control" name="alloText" id="alloInput" cols="30"
+                                rows="10"></textarea>
 
 
 
@@ -1187,92 +1547,16 @@
                 </table>
 
 
-
-                {{!-- -------------------------------- --}}
-
-
-
-
-
-                <p><b>ΕΠΕΞΗΓΗΣΑΤΕ ΛΕΠΤΟΜΕΡΩΣ ΤΙΣ ΚΑΤΑΦΑΤΙΚΕΣ ΑΠΑΝΤΗΣΕΙΣ ΟΛΩΝ ΤΩΝ ΑΝΩΤΕΡΩ ΕΡΩΤΗΣΕΩΝ </b></p>
-
-
-                <div class="col-12 pb-4">
-                  <div class="form-check">
-                    <input class="form-check-input" id="isMinor" type="checkbox" required="">
-                    <label class="form-check-label" for="invalidCheck2">
-                      Δηλώνω ότι οι ανωτέρω απαντήσεις είναι αληθείς και θα αποτελέσουν μέρος της αίτησής μου, που
-                      υποβλήθηκε για ασφάλιση στην ΑΧΑ Ασφαλιστική Α.Ε. </label>
-                  </div>
-                </div>
-
-
                 <div class="col-12 pt-2">
                   <button class="btn btn-primary" type="submit">Υποβολή Φόρμας</button>
                 </div>
+
+
               </form>
             </div>
           </div>
-          <!-- ============================================================ Form===================================================== -->
+          <!-- Form -->
 
-
-
-
-
-
-
-
-          <!--======================================== Email =====================================================================--->
-          <div class="tab-content rounded-bottom">
-            <div class="tab-pane p-3  preview" role="tabpanel" id="UserEmailFormDiv">
-
-              <form class="col g-3" action="/patient/SendPatientEmailForm" method="POST">
-
-
-
-
-
-                <div class="table-responsive mt-3">
-                  <table class="table border mb-0">
-
-                    <tr class="align-middle">
-                      <th class="col-md-2"> <label class="form-label" for="">Email Αποστολέα</label></th>
-
-                      <td>
-                        <div class="input-group"><span class="input-group-text" id="inputGroupPrepend2">@</span>
-                          <input class="form-control" id="validationDefaultEmail" type="email"
-                            placeholder="email@email.gr" name="AddUserWithMail" required="">
-                        </div>
-                      </td>
-
-                    </tr>
-
-                    <tr class="align-middle">
-                      <th class="col-md-2"> <label class="form-label" for="">Θέμα</label></th>
-                      <td>
-                        <div class="input-group">
-                          <input class="form-control" id="validationDefaultEmail" type="text"
-                          name="AddUserWithMailSubject" required="">
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-
-
-              
-
-
-                <div class="col-12 mt-5">
-                  <button class="btn btn-primary" type="submit">Αποστολή</button>
-                </div>
-
-              </form>
-
-            </div>
-          </div>
-
-          <!--======================================== Email =====================================================================--->
 
 
 
@@ -1281,31 +1565,34 @@
       </div>
     </div>
   </div>
-</div>
 
-{{#if error}}
 
-<script>
-  const myTimeout = setTimeout(myGreeting, 10000);
 
-  function myGreeting() {
-    $("#toast").hide()
-  }
-</script>
 
-<div class="justify-content-end mt-5" id="toast" style="display: flex;">
+  {{#if error}}
+  <script>
+    const myTimeout = setTimeout(myGreeting, 3000);
 
-  <div class="toast fade show bg-{{status}}" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <svg class="docs-placeholder-img rounded me-2" width="20" height="10" xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+    function myGreeting() {
+      $("#toast").hide()
+    }
+  </script>
 
-      </svg><strong class="me-auto"></strong><small></small>
-      <button class="btn-close" type="button" data-coreui-dismiss="toast" aria-label="Close"></button>
+  <div class="justify-content-end mt-5" id="toast" style="display: flex;">
+
+    <div class="toast fade show bg-{{status}}" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <svg class="docs-placeholder-img rounded me-2" width="20" height="10" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+
+        </svg><strong class="me-auto"></strong><small></small>
+        <button class="btn-close" id="btn-close" type="button" data-coreui-dismiss="toast" aria-label="Close"></button>
+      </div>
+
+      {{!-- MESSAGE --}}
+      <div class="toast-body">{{message}}.</div>
     </div>
-
-    {{!-- MESSAGE --}}
-    <div class="toast-body">{{message}}.</div>
   </div>
+  {{/if}}
+
 </div>
-{{/if}}

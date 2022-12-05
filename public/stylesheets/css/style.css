@@ -14082,4 +14082,24 @@ html:not([dir=rtl]) .wrapper {
   margin-bottom: 0.5rem;
 }
 
+
+
+/* custom */
+.custom_table span{
+  display: inline-block;
+  vertical-align: middle; /* this attribute will middle align all the "span" tag at same level */
+}
+.custom_table .circle {
+  margin-left: 5px; /* spacing the circle and the text */
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* 
+.parent{
+  display:grid;
+  place-items: center;
+} */
 /*# sourceMappingURL=style.css.map */

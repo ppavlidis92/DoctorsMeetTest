@@ -1,18 +1,23 @@
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <div class="card-header"><strong>Εγγραφή Νέου Χρήστη </strong></div>
+      <div class="card-header"><strong>Επεξεργασία Χρήστη </strong></div>
 
       <div class="card-body">
 
         {{!-- <p class="text-medium-emphasis small">Ενδεχομένος οδηγίες προς τον χρήστη που συμπληρώνει την φόρμα.</p>
         --}}
 
+
+
+        </script>
+
+
         <div class="example">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" data-coreui-toggle="tab" role="tab" id="UserForm">
-                Φόρμα Εγγραφής</a>
+                Φόρμα Επεξεργασίας</a>
             </li>
 
 
@@ -22,77 +27,67 @@
             <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-789" id="UserFormEmail">
 
 
-              <form class="row g-3" action="/user/AddUser" method="POST">
+              <form class="row g-3" action="/edit/editUser/{{id}}" method="POST" name="myForm">
 
 
                 {{!-- Επίθετο --}}
                 <div class="col-md-4">
                   <label class="form-label" for="lname">Επίθετο</label>
-                  <input class="form-control" id="lname" name="lname" type="text" required="">
+                  <input class="form-control" id="lname" name="lname" type="text" required="" value="{{user.lname}}" />
                 </div>
 
                 {{!-- Όνομα --}}
-                <div class="col-md-4">
+                <div class=" col-md-4">
                   <label class="form-label" for="fname">Όνομα</label>
-                  <input class="form-control" id="fname" name="fname" type="text" required="">
+                  <input class="form-control" id="fname" name="fname" type="text" required="" value="{{user.fname}}">
                 </div>
 
 
                 {{!-- AMKA --}}
                 <div class="col-md-5">
                   <label class="form-label" for="email">AMKA</label>
-                  <input class="form-control" id="UserAmka" name="UserAmka" type="number" size="4" required="">
+                  <input class="form-control" id="UserAmka" name="UserAmka" type="number" size="4" required=""
+                    value="{{user.UserAmka}}">
                 </div>
 
                 <div class="col-md-4">
                   <label class="form-label" for="validationAge">Ηλικία</label>
-                  <input class="form-control" id="age" name="age" type="text" required="" placeholder="29">
+                  <input class="form-control" id="age" name="age" type="text" required="" value="{{user.age}}">
                 </div>
 
 
                 <div class="col-md-6">
                   <label class="form-label" for="validationDefaultEmail">Email</label>
                   <div class="input-group"><span class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input class="form-control" id="email" name="email" type="email" placeholder="email@email.gr"
-                      required="">
+                    <input class="form-control" id="email" name="email" type="email" required="" value="{{user.email}}">
                   </div>
                 </div>
 
 
-                <!-- Password input -->
-                <div class="col-md-7">
-                  <label class="form-label" for="password">Κωδικός</label>
-                  <input class="form-control" id="password" name="password" type="password" required="">
-                </div>
-
-                <!-- Password input 2-->
-                <div class="col-md-7">
-                  <label class="form-label" for="RepeatPassword">Επαναληψη Κωδικού</label>
-                  <input class="form-control" id="RepeatPassword" name="RepeatPassword" type="password" required="">
-                </div>
 
 
                 <div class="col-md-4">
                   <label class="form-label" for="validationMobile">Κινητό</label>
-                  <input class="form-control" id="mobile_number" name="mobile_number" type="text"
-                    placeholder="6972364565" required="">
+                  <input class="form-control" id="mobile_number" name="mobile_number" type="text" required=""
+                    value="{{user.mobile_number}}">
                 </div>
 
                 <div class="col-md-4">
                   <label class="form-label" for="streetName">Διεύθηνση</label>
                   <input class="form-control" id="streetName" name="streetName" type="text"
-                    placeholder="Σαρανταπόρου 23">
+                    value="{{user.Address.streetName}}">
                 </div>
 
                 <div class="col-md-2">
                   <label class="form-label" for="streetNumber">Αριθμός</label>
                   <input class="form-control" id="streetNumber" name="streetNumber" type="number" required=""
-                    placeholder="22">
+                    value="{{user.Address.streetNumber}}">
                 </div>
 
                 <div class="col-md-3">
                   <label class="form-label" for="streetZip">Τ.Κ.</label>
-                  <input class="form-control" id="streetZip" name="streetZip" type="number" placeholder="19999">
+                  <input class="form-control" id="streetZip" name="streetZip" type="number"
+                    value="{{user.Address.streetZip}}">
                 </div>
 
 
@@ -117,7 +112,6 @@
 
 
   {{#if error}}
-
   <script>
     const myTimeout = setTimeout(myGreeting, 3000);
 
