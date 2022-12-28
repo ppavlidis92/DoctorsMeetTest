@@ -236,6 +236,7 @@ router.post("/submitPatient/:id", verifyToken, async (req, res) => {
     sustolikiA,
     diastolikiA,
     sustolikiB,
+    blabhMuoskeletiko,
     diastolikiB,
     akroasiKardias,
     kardiakiOsi,
@@ -259,7 +260,7 @@ router.post("/submitPatient/:id", verifyToken, async (req, res) => {
     leukoma,
     SakxaroOyra,
     diadikasiaOura,
-    blabhMuoskeletiko,
+    muoskeletiko,
     diogkoshThiroeidi,
     dermatotherapeia,
     leptomeriesAKat,
@@ -288,6 +289,9 @@ router.post("/submitPatient/:id", verifyToken, async (req, res) => {
   ekthesiIatrou.sfikseisRithmos = sfikseisRithmos
   ekthesiIatrou.sustolikiA = sustolikiA
 
+  //
+  ekthesiIatrou.blabhMuoskeletiko = blabhMuoskeletiko
+
   ekthesiIatrou.diastolikiA = diastolikiA
   ekthesiIatrou.sustolikiB = sustolikiB
   ekthesiIatrou.diastolikiB = diastolikiB
@@ -312,7 +316,7 @@ router.post("/submitPatient/:id", verifyToken, async (req, res) => {
   ekthesiIatrou.leukoma = leukoma
   ekthesiIatrou.SakxaroOyra = SakxaroOyra
   ekthesiIatrou.diadikasiaOura = diadikasiaOura
-  ekthesiIatrou.blabhMuoskeletiko = blabhMuoskeletiko
+  ekthesiIatrou.muoskeletiko = muoskeletiko
   ekthesiIatrou.diogkoshThiroeidi = diogkoshThiroeidi
   ekthesiIatrou.dermatotherapeia = dermatotherapeia
   ekthesiIatrou.proteinomenosGiaAsfaleia = (proteinomenosGiaAsfaleia == 'true') ? true : false
@@ -419,11 +423,13 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
     fname,
     lname,
     email,
+    eminopafsi,
     UserAmka,
     anaimia,gender,
     streetName,
     streetNumber,
     streetZip,
+  
     mobile_number,
     identification,
     AsfalistikoTameio,
@@ -448,10 +454,12 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
     anaimiaText,
     army,
     allo,
+    covid,
     alergiaText,
 
     traumatismoi,
-    osteosinthesi,
+    osteosinthesiBoolean,
+    osteosinthesiText,
 
     gunaikologikaProblimataText,
 
@@ -466,8 +474,12 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
     farmakaEidos,
     muoskeletiko,
     alloText,
+    covidText,
     DateOfBirth,
-
+    dermatopatheiaBoolean, dermatopatheiaText,
+    apeikonistikoBoolean,apeikonistikoWhich,apeikonistikoWhen,apeikonistikoMedicalOpinion,
+    karkinosBoolean,karkinosOrgan, karkinosTreatment
+    ,kardiaBoolean, kardiaText
   } = req.body;
 
   let Address = {
@@ -477,7 +489,7 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
   };
 
 
-
+console.log(muoskeletiko)
   //doctor
   let doctor = {};
   let completedByDoctor = false
@@ -497,6 +509,7 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
   //annarotiki
   let annarotikiObj = {}
   annarotikiObj = patientHelper.returnParamsObj(annarotikiObj, annarotiki, annarotikiTextInput)
+
 
 
   //therapia
@@ -526,6 +539,10 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
   //allo
   let alloObj = {}
   alloObj = patientHelper.returnParamsObj(alloObj, allo, alloText)
+
+  //covid
+  let covidObj = {}
+  covidObj = patientHelper.returnParamsObj(covidObj, covid, covidText)
 
 
 
@@ -557,8 +574,37 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
   let age_group = patientHelper.GetAgeGroup(age)
 
 
+ 
+   //apeikonistiko
+   let apeikonistiko ={}
+   apeikonistiko.boolean= apeikonistikoBoolean
+   apeikonistiko.which= apeikonistikoWhich
+   apeikonistiko.when= apeikonistikoWhen
+   apeikonistiko.medicalΟpinion= apeikonistikoMedicalOpinion
+ 
+ 
 
 
+  //osteosinthesi
+  let osteosinthesi={}
+  osteosinthesi =  patientHelper.returnParamsObj(osteosinthesi, osteosinthesiBoolean, osteosinthesiText)
+
+ //karkinos
+ let karkinos ={}
+ karkinos.boolean= karkinosBoolean
+ karkinos.organ= karkinosOrgan
+ karkinos.treatment= karkinosTreatment
+
+
+ let kardia={}
+ kardia =  patientHelper.returnParamsObj(kardia, kardiaBoolean, kardiaText)
+ 
+
+    //dermatopatheia
+    let dermatopatheia={}
+    dermatopatheia =  patientHelper.returnParamsObj(dermatopatheia, dermatopatheiaBoolean, dermatopatheiaText)
+    
+console.log(dermatopatheia);
   Patient.findByIdAndUpdate(
     {
       _id: req.params.id,
@@ -568,15 +614,21 @@ router.post("/editPatient/:id", verifyToken, async (req, res) => {
       email: email.toLowerCase(), age,
       Address, UserAmka,
       DateOfBirth, doctor,
+      dermatopatheia,
       annarotiki: annarotikiObj,
       alergia: alergiaObj,
       army: armyObj,
+      kardia,
       history: historyObj,
       therapia: therapiaObj,
+      karkinos,
       anaimia: anaimiaObj,
       gunaikologikaProblimata: gunaikologikaProblimataObj,
       farmaka: farmakaObj,
       allo: alloObj,
+      covid: covidObj,
+      eminopafsi,
+      apeikonistiko,
       identification, muoskeletiko,
       AsfalistikoTameio, smoker, alcohol,
       eyesEarsDiscomfort, illggous, gastrenteriko,

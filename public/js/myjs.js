@@ -275,6 +275,137 @@ $(document).on("click", ".allo", function () {
 /////////////////   allo /////////////////
 
 
+////////////////   covid /////////////////
+$(document).on("click", ".covid", function () {
+  // in the handler, 'this' refers to the box clicked on
+  var value = $(this).val();
+  var $box = $(this);
+
+  if ($box.is(":checked")) {
+    if (value == "true") {
+      $("#covidText").show();
+    } else {
+      $("#covidText").hide();
+    }
+  } else {
+    if (value == "true") {
+      $("#covidText").hide();
+    }
+  }
+});
+/////////////////   covid /////////////////
+
+
+
+////////////////   kardia /////////////////
+$(document).on("click", ".kardia", function () {
+  // in the handler, 'this' refers to the box clicked on
+  var value = $(this).val();
+  var $box = $(this);
+
+  if ($box.is(":checked")) {
+    if (value == "true") {
+      $("#kardiaText").show();
+    } else {
+      $("#kardiaText").hide();
+    }
+  } else {
+    if (value == "true") {
+      $("#kardiaText").hide();
+    }
+  }
+});
+/////////////////   kardia /////////////////
+
+
+
+////////////////   dermatopatheia /////////////////
+$(document).on("click", ".dermatopatheia", function () {
+  // in the handler, 'this' refers to the box clicked on
+  var value = $(this).val();
+  var $box = $(this);
+
+  if ($box.is(":checked")) {
+    if (value == "true") {
+      $("#dermatopatheiaText").show();
+    } else {
+      $("#dermatopatheiaText").hide();
+    }
+  } else {
+    if (value == "true") {
+      $("#dermatopatheiaText").hide();
+    }
+  }
+});
+/////////////////   dermatopatheia /////////////////
+
+
+
+////////////////   osteosinthesi /////////////////
+$(document).on("click", ".osteosinthesi", function () {
+  // in the handler, 'this' refers to the box clicked on
+  var value = $(this).val();
+  var $box = $(this);
+
+  if ($box.is(":checked")) {
+    if (value == "true") {
+      $("#osteosinthesiText").show();
+    } else {
+      $("#osteosinthesiText").hide();
+    }
+  } else {
+    if (value == "true") {
+      $("#osteosinthesiText").hide();
+    }
+  }
+});
+/////////////////   osteosinthesi /////////////////
+
+
+
+////////////////   apeikonistiko /////////////////
+$(document).on("click", ".apeikonistiko", function () {
+  // in the handler, 'this' refers to the box clicked on
+  var value = $(this).val();
+  var $box = $(this);
+
+  if ($box.is(":checked")) {
+    if (value == "true") {
+      $("#apeikonistikoText").show();
+    } else {
+      $("#apeikonistikoText").hide();
+    }
+  } else {
+    if (value == "true") {
+      $("#apeikonistikoText").hide();
+    }
+  }
+});
+/////////////////   apeikonistiko /////////////////
+
+
+
+////////////////   karkinos /////////////////
+$(document).on("click", ".karkinos", function () {
+  // in the handler, 'this' refers to the box clicked on
+  var value = $(this).val();
+  var $box = $(this);
+
+  if ($box.is(":checked")) {
+    if (value == "true") {
+      $("#karkinosText").show();
+    } else {
+      $("#karkinosText").hide();
+    }
+  } else {
+    if (value == "true") {
+      $("#karkinosText").hide();
+    }
+  }
+});
+/////////////////   karkinos /////////////////
+
+
 ////////////////   checkup /////////////////
 $(document).on("click", "#checkup", function () {
   // in the handler, 'this' refers to the box clicked on

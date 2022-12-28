@@ -26,6 +26,7 @@ const mailHost = process.env.mailHost;
 router.use(bodyParser.urlencoded({ extended: true }));
 const { getGreeceTime, getGreeceTimeOneYear, getDoctor, getDoctorWithMail, getDoctorFullName
 } = require("../helper/helperFunctions");
+const { text } = require("body-parser");
 
 
 
@@ -91,16 +92,18 @@ router.post("/AddPatient", verifyToken, async (req, res) => {
     anaimiaText,
     army,
     allo,
+    covid,
+    karkinosBoolean,
     alergiaText,
 
     traumatismoi,
-    osteosinthesi,
+    osteosinthesiText,osteosinthesiBoolean,
 
     gunaikologikaProblimataText,
 
     egkuosText,
     annarotiki,
-    sullipseis,
+    eminopafsi,
     apovoles,
     history,
     metavoliVarous,
@@ -109,7 +112,20 @@ router.post("/AddPatient", verifyToken, async (req, res) => {
     farmakaEidos,
     muoskeletiko,
     alloText,
+    covidText,
+
     DateOfBirth,
+    karkinosOrgan,
+    karkinosTreatment,
+    kardiaText,
+    kardiaBoolean,
+    dermatopatheiaBoolean,
+    dermatopatheiaText,
+    apeikonistikoBoolean,
+    apeikonistikoWhich,
+    apeikonistikoWhen,
+    apeikonistikoMedicalΟpinion
+
 
   } = req.body;
 
@@ -170,8 +186,9 @@ router.post("/AddPatient", verifyToken, async (req, res) => {
   let alloObj = {}
   alloObj = patientHelper.returnParamsObj(alloObj, allo, alloText)
 
-
-
+  //covid
+  let covidObj = {}
+  covidObj = patientHelper.returnParamsObj(covidObj, covid, covidText)
 
   let familyTable = [];
   familyTable = patientHelper.CreateFamilyTable(req.body)
@@ -194,6 +211,36 @@ router.post("/AddPatient", verifyToken, async (req, res) => {
   SakxarodiDiabiti = patientHelper.CreateSakxarodiDiabiti(req.body)
 
 
+   //karkinos
+  let karkinos ={}
+  karkinos.boolean= karkinosBoolean
+  karkinos.organ= karkinosOrgan
+  karkinos.treatment= karkinosTreatment
+
+  //kardia
+  let kardia={}
+  kardia =  patientHelper.returnParamsObj(kardia, kardiaBoolean, kardiaText)
+  
+
+  //dermatopatheia
+  let dermatopatheia={}
+  dermatopatheia =  patientHelper.returnParamsObj(dermatopatheia, dermatopatheiaBoolean, dermatopatheiaText)
+  
+  
+  //osteosinthesi
+  let osteosinthesi={}
+  osteosinthesi =  patientHelper.returnParamsObj(osteosinthesi, osteosinthesiBoolean, osteosinthesiText)
+  
+
+
+   //apeikonistiko
+   let apeikonistiko ={}
+   apeikonistiko.boolean= apeikonistikoBoolean
+   apeikonistiko.which= apeikonistikoWhich
+   apeikonistiko.when= apeikonistikoWhen
+   apeikonistiko.medicalΟpinion= apeikonistikoMedicalΟpinion
+ 
+ 
 
 
   let age = new Date().getFullYear() - (new Date(DateOfBirth)).getFullYear()
@@ -216,13 +263,18 @@ router.post("/AddPatient", verifyToken, async (req, res) => {
     gunaikologikaProblimata: gunaikologikaProblimataObj,
     farmaka: farmakaObj,
     allo: alloObj,
+    covid: covidObj,
+    karkinos,
+    kardia,
+    apeikonistiko,
+    dermatopatheia,
     identification, muoskeletiko,
     AsfalistikoTameio, smoker, alcohol,
     eyesEarsDiscomfort, illggous, gastrenteriko,
     anapnefstiko, kukloforiako, ouropoihtiko,
     traumatismoi, osteosinthesi,
     egkuos: egkuosObj,
-    sullipseis, apovoles, metavoliVarous,
+    eminopafsi, apovoles, metavoliVarous,
     mobile_number, completedByDoctor, familyTable,
     checkup, egxeirish, allesNosilies,
     SakxarodiDiabiti, home_number, status
@@ -270,7 +322,7 @@ router.post("/AddPatient", verifyToken, async (req, res) => {
  * @param  {} async(req
  * @param  {} res
  */
-router.post("/AddEmailPatient", verifyToken, async (req, res) => {
+router.post("/AddEmailPatient", async (req, res) => {
 
 
  
@@ -314,16 +366,18 @@ router.post("/AddEmailPatient", verifyToken, async (req, res) => {
     anaimiaText,
     army,
     allo,
+    covid,
+    karkinosBoolean,
     alergiaText,
 
     traumatismoi,
-    osteosinthesi,
+    osteosinthesiText,osteosinthesiBoolean,
 
     gunaikologikaProblimataText,
 
     egkuosText,
     annarotiki,
-    sullipseis,
+    eminopafsi,
     apovoles,
     history,
     metavoliVarous,
@@ -332,7 +386,19 @@ router.post("/AddEmailPatient", verifyToken, async (req, res) => {
     farmakaEidos,
     muoskeletiko,
     alloText,
+    covidText,
+    karkinosText,
     DateOfBirth,
+    karkinosOrgan,
+    karkinosTreatment,
+    kardiaText,
+    kardiaBoolean,
+    dermatopatheiaBoolean,
+    dermatopatheiaText,
+    apeikonistikoBoolean,
+    apeikonistikoWhich,
+    apeikonistikoWhen,
+    apeikonistikoMedicalΟpinion
 
 
   } = req.body;
@@ -398,7 +464,9 @@ router.post("/AddEmailPatient", verifyToken, async (req, res) => {
   let alloObj = {}
   alloObj = patientHelper.returnParamsObj(alloObj, allo, alloText)
 
-
+  //covid
+  let covidObj = {}
+  covidObj = patientHelper.returnParamsObj(covidObj, covid, covidText)
 
 
   let familyTable = [];
@@ -420,6 +488,35 @@ router.post("/AddEmailPatient", verifyToken, async (req, res) => {
   //SakxarodiDiabiti
   let SakxarodiDiabiti = {}
   SakxarodiDiabiti = patientHelper.CreateSakxarodiDiabiti(req.body)
+
+ //karkinos
+ let karkinos ={}
+ karkinos.boolean= karkinosBoolean
+ karkinos.organ= karkinosOrgan
+ karkinos.treatment= karkinosTreatment
+
+ //kardia
+ let kardia={}
+ kardia =  patientHelper.returnParamsObj(kardia, kardiaBoolean, kardiaText)
+
+
+ //dermatopatheia
+ let dermatopatheia={}
+ dermatopatheia =  patientHelper.returnParamsObj(dermatopatheia, dermatopatheiaBoolean, dermatopatheiaText)
+
+
+ //osteosinthesi
+ let osteosinthesi={}
+ osteosinthesi =  patientHelper.returnParamsObj(osteosinthesi, osteosinthesiBoolean, osteosinthesiText)
+
+
+
+  //apeikonistiko
+  let apeikonistiko ={}
+  apeikonistiko.boolean= apeikonistikoBoolean
+  apeikonistiko.which= apeikonistikoWhich
+  apeikonistiko.when= apeikonistikoWhen
+  apeikonistiko.medicalΟpinion= apeikonistikoMedicalΟpinion
 
 
 
@@ -444,13 +541,18 @@ router.post("/AddEmailPatient", verifyToken, async (req, res) => {
     gunaikologikaProblimata: gunaikologikaProblimataObj,
     farmaka: farmakaObj,
     allo: alloObj,
+    covid: covidObj,
+    karkinos,
+    kardia,
+    apeikonistiko,
+    dermatopatheia,
     identification, muoskeletiko,
     AsfalistikoTameio, smoker, alcohol,
     eyesEarsDiscomfort, illggous, gastrenteriko,
     anapnefstiko, kukloforiako, ouropoihtiko,gender,
     traumatismoi, osteosinthesi,
     egkuos: egkuosObj,
-    sullipseis, apovoles, metavoliVarous,
+    eminopafsi, apovoles, metavoliVarous,
     mobile_number, completedByDoctor, familyTable,
     checkup, egxeirish, allesNosilies,
     SakxarodiDiabiti, home_number, status
@@ -543,7 +645,7 @@ router.post("/SendPatientEmailForm", verifyToken, async (req, res) => {
 
   const uuid = crypto.randomUUID()
   let userUrl = ApplicationUrl + 'email/emailAdd/' + uuid
-  let Text = ' Καλησπέρα σας,  Παρακαλώ όπως επισκεφτείτε τον παρακάτω σύνδεσμο, ' + userUrl + ' προκειμένου να γίνει η εγγραφή σας στην πλατφόρα του Ιατρού σας (Δρ. ' + doctorFullName + ')'
+  let Text = 'Αγαπητέ κύριε/κυρία,\n\n Σας ευχαριστούμε για την εγγραφή σας στην πλατφόρμα του προσωπικού γιατρού κ. Γεράσιμου Βουδούρη,\n\nΠριν το ραντεβού σας με τον γιατρό είναι σημαντικό να καταγράψουμε το ιατρικό σας ιστορικό. Με αυτό τον τρόπο δίνεται η δυνατότητα στον γιατρό να αποκομίσει όλες τις χρήσιμες πληροφορίες, που θα τον προσανατολίσουν κατ αρχάς, ως πρός την διάγνωση και την επίλυση του εκάστοτε προβλήματος σας.\nΗ συμπλήρωση του ιστορικού είναι απλή και δεν θα σας πάρει παραπάνω από 5 λεπτά. Την φόρμα θα βρείτε στον σύνδεσμο: ' + userUrl + '\n Συμπληρώστε τα στοιχεία που εμφανίζονται και πατήστε υποβολή. Με αυτό τον τρόπο όλα τα στοιχεία σας θα καταχωρηθούν αυτόματα στον ιατρικό σας φάκελο στο σύστημα του ιατρείου όπως προβλέπεται από το νόμο.\n\nΓια την προστασία των δεδομένων σας ο σύνδεσμος παραμένει ενεργός μία φορά αφότου τον πατήσετε.\nΜην διστάσετε να επικοινωνήσετε μαζί μας για οποιαδήποτε συμπληρωματική πληροφορία\n\nΠαρακαλώ μην απαντήσετε στο συγκεκριμένο email.\n\nΙατρείο κ. Γεράσιμου Βουδούρη\n Βασιλέως Γεωργίου & Τριγλίας, Ραφήνα\nemail: iatriovoudouris@gmail.com\nτηλ. επικ. : 2294023202'
 
   console.log(Text);
 
@@ -551,13 +653,14 @@ router.post("/SendPatientEmailForm", verifyToken, async (req, res) => {
     _id: new mongoose.Types.ObjectId(),
     UrlId: uuid,
     doctor,
-    isCompleted: false
+    isCompleted: false,
+    PatientEmail:req.body.AddUserWithMail
   })
 
 
   await email.save().then((result) => {
 
-
+console.log(result)
     var transporter = nodemailer.createTransport({
       host: mailHost,
       port: 465,
@@ -572,7 +675,7 @@ router.post("/SendPatientEmailForm", verifyToken, async (req, res) => {
     );
 
     var mailOptions = {
-      from: UserMail,
+      from: 'iatriovoudouris@info',
       to: newUserEmail,
       subject: Subject,
       text: Text
